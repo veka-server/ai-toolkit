@@ -81,7 +81,4 @@ WORKDIR /
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-# Ajouter la variable d'environnement pour le mode offline
-ENV HF_HUB_OFFLINE=1
-
 CMD ["/start.sh"]
