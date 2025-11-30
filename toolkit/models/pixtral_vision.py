@@ -272,7 +272,7 @@ class PixtralVisionEncoder(nn.Module):
         if os.path.isdir(pretrained_model_name_or_path):
             model_folder = pretrained_model_name_or_path
         else:
-            model_folder = snapshot_download(pretrained_model_name_or_path)
+            model_folder = snapshot_download(pretrained_model_name_or_path,local_files_only=True)
 
         # make sure there is a config
         if not os.path.exists(os.path.join(model_folder, "config.json")):
