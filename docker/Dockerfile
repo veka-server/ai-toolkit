@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.8.1-devel-ubuntu22.04
+FROM nvidia/12.4.1-cudnn-devel-ubuntu20.04
 
 LABEL authors="jaret"
 
