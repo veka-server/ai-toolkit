@@ -211,7 +211,7 @@ class TrainVAEProcess(BaseTrainProcess):
                 concatenated_dataset,
                 batch_size=self.batch_size,
                 shuffle=True,
-                num_workers=16
+                num_workers=0
             )
 
     def remove_oldest_checkpoint(self):
