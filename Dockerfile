@@ -1,13 +1,18 @@
 #FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
-FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-devel
+FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
 
 LABEL authors="jaret"
 
 # Set noninteractive to avoid timezone prompts
 ENV DEBIAN_FRONTEND=noninteractive
+ENV CUDA_HOME=/usr/local/cuda
 
 # ref https://en.wikipedia.org/wiki/CUDA
 # ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0 12.0"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    cuda-toolkit-12-4 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
