@@ -65,7 +65,8 @@ WORKDIR /app/ai-toolkit
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt && \
 #    pip install --pre --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu124 --force && \
-    pip install setuptools==69.5.1 --no-cache-dir
+    pip install setuptools==69.5.1 --no-cache-dir && \
+    pip install flash-attn --no-build-isolation
 
 # Build UI
 WORKDIR /app/ai-toolkit/ui
