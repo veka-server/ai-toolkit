@@ -100,7 +100,7 @@ class UltimateSliderTrainerProcess(BaseSDTrainProcess):
                 concatenated_dataset,
                 batch_size=self.train_config.batch_size,
                 shuffle=True,
-                num_workers=2
+                num_workers=0
             )
 
     def before_model_load(self):
