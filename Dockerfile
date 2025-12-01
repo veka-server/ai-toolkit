@@ -10,9 +10,9 @@ ENV CUDA_HOME=/usr/local/cuda
 # ref https://en.wikipedia.org/wiki/CUDA
 # ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0 12.0"
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    cuda-toolkit-12-4 \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y --no-install-recommends \
+#    cuda-toolkit-12-4 \
+#    && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -39,6 +39,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     unzip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.6cxx11abiTRUE-cp310-cp310-linux_x86_64.whl
 
 # Install nodejs
 WORKDIR /tmp
@@ -70,8 +72,7 @@ WORKDIR /app/ai-toolkit
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt && \
 #    pip install --pre --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu124 --force && \
-    pip install setuptools==69.5.1 --no-cache-dir && \
-    pip install flash-attn --no-build-isolation
+    pip install setuptools==69.5.1 --no-cache-dir
 
 # Build UI
 WORKDIR /app/ai-toolkit/ui
