@@ -69,7 +69,7 @@ WORKDIR /app/ai-toolkit
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt && \
 #    pip install --pre --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu124 --force && \
-    pip install setuptools==69.5.1 --no-cache-dir \
+    pip install setuptools==69.5.1 --no-cache-dir && \
     pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.6cxx11abiTRUE-cp311-cp311-linux_x86_64.whl
 
 # Build UI
