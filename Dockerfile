@@ -5,7 +5,6 @@ LABEL authors="jaret"
 
 # Set noninteractive to avoid timezone prompts
 ENV DEBIAN_FRONTEND=noninteractive
-ENV CUDA_HOME=/usr/local/cuda
 
 # ref https://en.wikipedia.org/wiki/CUDA
 # ENV TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0 12.0"
@@ -40,8 +39,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.6cxx11abiTRUE-cp310-cp310-linux_x86_64.whl
-
 # Install nodejs
 WORKDIR /tmp
 RUN curl -sL https://deb.nodesource.com/setup_23.x -o nodesource_setup.sh && \
@@ -72,7 +69,8 @@ WORKDIR /app/ai-toolkit
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt && \
 #    pip install --pre --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu124 --force && \
-    pip install setuptools==69.5.1 --no-cache-dir
+    pip install setuptools==69.5.1 --no-cache-dir \
+    pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.6cxx11abiTRUE-cp311-cp311-linux_x86_64.whl
 
 # Build UI
 WORKDIR /app/ai-toolkit/ui
