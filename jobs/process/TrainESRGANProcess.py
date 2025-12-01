@@ -161,7 +161,7 @@ class TrainESRGANProcess(BaseTrainProcess):
                 concatenated_dataset,
                 batch_size=self.batch_size,
                 shuffle=True,
-                num_workers=6
+                num_workers=0
             )
 
     def setup_vgg19(self):
